@@ -33,7 +33,7 @@ class Supplier(models.Model):
     street = models.TextField(verbose_name="Улица", **NULLABLE)
     house_number = models.TextField(verbose_name="Номер дома", **NULLABLE)
     product = models.ManyToManyField(Product, verbose_name='Продукт')
-    supplier = models.ForeignKey('Supplier', on_delete=models.PROTECT, verbose_name='Поставщик', **NULLABLE)
+    purveyor = models.ForeignKey('Supplier', on_delete=models.PROTECT, verbose_name='Поставщик', **NULLABLE)
     debt = models.FloatField(verbose_name="Задолженность", **NULLABLE)
 
     release_date = models.DateTimeField(
