@@ -1,6 +1,11 @@
 from django.db import models
 
 NULLABLE = {"null": True, "blank": True}
+Supplier_dict = {
+    "Завод": "Завод",
+    "Розничная сеть": "Сеть",
+    "индивидуальный предприниматель": "Предприниматель"
+}
 
 class Product(models.Model):
     name = models.CharField(
@@ -25,14 +30,14 @@ class Product(models.Model):
 
 class Supplier(models.Model):
     name = models.CharField(
-        max_length=255, verbose_name="название", help_text="Укажите название поставщика"
+        choices=Supplier_dict, verbose_name="тип поставщика", help_text="Выберите тип поставщика"
     )
     email = models.EmailField(verbose_name="email", **NULLABLE)
     country = models.TextField(verbose_name="Страна", **NULLABLE)
     city = models.TextField(verbose_name="Город", **NULLABLE)
     street = models.TextField(verbose_name="Улица", **NULLABLE)
     house_number = models.TextField(verbose_name="Номер дома", **NULLABLE)
-    product = models.ManyToManyField(Product, verbose_name='Продукт')
+    products = models.ManyToManyField(Product, verbose_name='Продукт')
     purveyor = models.ForeignKey('Supplier', on_delete=models.PROTECT, verbose_name='Поставщик', **NULLABLE)
     debt = models.FloatField(verbose_name="Задолженность", **NULLABLE)
 
