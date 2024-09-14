@@ -5,14 +5,14 @@ from django.utils.safestring import mark_safe
 from network_objects.models import Product, Supplier
 
 @admin.register(Product)
-class UserAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     list_display = ("pk", "name")
 
 @admin.register(Supplier)
-class UserAdmin(admin.ModelAdmin):
+class SupplierAdmin(admin.ModelAdmin):
     list_display = ("pk", "name", "purveyor_link", "debt")
     actions = ['clean_debt']
-    list_filter = ['city']
+    list_filter = ['city', 'country']
 
     def purveyor_link(self, obj):
         if obj.purveyor:

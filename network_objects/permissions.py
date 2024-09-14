@@ -1,8 +1,6 @@
 from rest_framework import permissions
 from rest_framework.serializers import ValidationError
 
-
-
 class NotUpdate(permissions.BasePermission):
     """Запрет на обновление"""
 
