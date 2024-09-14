@@ -10,7 +10,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Supplier)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("pk", "name", "purveyor_link")
+    list_display = ("pk", "name", "purveyor_link", "debt")
     actions = ['clean_debt']
     list_filter = ['city']
 
