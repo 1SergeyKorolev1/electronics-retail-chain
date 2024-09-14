@@ -32,6 +32,7 @@ class Supplier(models.Model):
     name = models.CharField(
         choices=Supplier_dict, verbose_name="тип поставщика", help_text="Выберите тип поставщика"
     )
+    supplier_level = models.IntegerField(default=0, verbose_name="уровень в цепочке поставок", **NULLABLE)
     email = models.EmailField(verbose_name="email", **NULLABLE)
     country = models.TextField(verbose_name="Страна", **NULLABLE)
     city = models.TextField(verbose_name="Город", **NULLABLE)
