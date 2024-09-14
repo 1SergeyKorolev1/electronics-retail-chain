@@ -11,6 +11,7 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Supplier)
 class UserAdmin(admin.ModelAdmin):
     list_display = ("pk", "name", "purveyor_link")
+    actions = ['clean_debt']
 
     def purveyor_link(self, obj):
         if obj.purveyor:
@@ -18,6 +19,13 @@ class UserAdmin(admin.ModelAdmin):
                 reverse('admin:network_objects_supplier_change', args=(f'{obj.purveyor.pk}')), obj.purveyor))
         return obj.purveyor
 
+    def clean_debt(self, request, queryset):
+        for supplier in queryset:
+            supplier.debt = 0
+            supplier.save()
+        self.message_user(request, f'Задолженность очищена.')
+
+    clean_debt.short_description = 'Очистить задолженность'
     purveyor_link.short_description = "ссылка на поставщика"
 
 
