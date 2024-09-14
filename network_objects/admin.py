@@ -12,6 +12,7 @@ class UserAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     list_display = ("pk", "name", "purveyor_link")
     actions = ['clean_debt']
+    list_filter = ['city']
 
     def purveyor_link(self, obj):
         if obj.purveyor:
