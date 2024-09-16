@@ -1,11 +1,15 @@
-from rest_framework.viewsets import ModelViewSet, generics
-from network_objects.models import Product, Supplier
-from network_objects.serializers import ProductSerializer, SupplierSerializer
+from rest_framework.viewsets import ModelViewSet
+from network_objects.models import Product, Supplier, Contacts
+from network_objects.serializers import ProductSerializer, SupplierSerializer, ContactsSerializer
 from network_objects.permissions import NotUpdate
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+class ContactsViewSet(ModelViewSet):
+    queryset = Contacts.objects.all()
+    serializer_class = ContactsSerializer
 
 class SupplierViewSet(ModelViewSet):
     queryset = Supplier.objects.all()
